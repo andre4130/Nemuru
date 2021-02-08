@@ -23,7 +23,57 @@ const Characters = ({ characters, species, planets, starships }) => {
         {species[specieID] === undefined ? (
           <p>&nbsp;No information</p>
         ) : (
-          <p>&nbsp;{species[specieID]}</p>
+          <p>&nbsp;{species[specieID - 1]}</p>
+        )}
+      </>
+    );
+  };
+
+  const getPlanet = (character) => {
+    const planetData = character.homeworld;
+    if (planetData.length > 0) {
+      var res = planetData.split("/");
+      var planetID = res[5];
+    }
+
+    return (
+      <>
+        {planets[planetID] === undefined ? (
+          <p>&nbsp;No information</p>
+        ) : (
+          <p>&nbsp;{planets[planetID - 1]}</p>
+        )}
+      </>
+    );
+  };
+
+  const getStarship = (character) => {
+    const starshipData = character.starships;
+    var starshipArray = [];
+    if (starshipData.length > 0) {
+      for (let i = 0; i < starshipData.length; i++) {
+        var res = starshipData[i].split("/");
+        var starshipID = res[5];
+        starshipArray.push(starshipID);
+      }
+    }
+
+    //starships are not correct
+
+    return (
+      <>
+        {starshipArray[0] === undefined ? (
+          <p>&nbsp;None</p>
+        ) : (
+          <ul>
+            {starshipArray.map((starship) => {
+              return (
+                <li>
+                  <p>{starships[starship - 1]}</p>
+                </li>
+              );
+            })}
+          </ul>
         )}
       </>
     );
@@ -43,8 +93,20 @@ const Characters = ({ characters, species, planets, starships }) => {
         <Card.Text>
           <b>Gender:</b> {character.gender}
         </Card.Text>
-        <Card.Text className="d-inline-flex">
-          <b>Specie:</b> {getSpecie(character)}
+        <Card.Text>
+          <div className="d-inline-flex">
+            <b>Specie:</b> {getSpecie(character)}
+          </div>
+        </Card.Text>
+        <Card.Text>
+          <div className="d-inline-flex">
+            <b>Starship(s):</b> {getStarship(character)}
+          </div>
+        </Card.Text>
+        <Card.Text>
+          <div className="d-inline-flex">
+            <b>Planet:</b> {getPlanet(character)}
+          </div>
         </Card.Text>
       </Card.Body>
       <div className="d-flex justify-content-end m-3">
