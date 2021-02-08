@@ -6,6 +6,8 @@ import Filter from "../filter/Filter";
 
 //STYLING
 import { Container, CardColumns, Card, Button } from "react-bootstrap";
+import fav from "../../assets/svg/falcon_yellow.svg";
+import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
 
 const Characters = ({ characters, species, planets, starships }) => {
   const handleFavourites = (i) => {
@@ -69,7 +71,7 @@ const Characters = ({ characters, species, planets, starships }) => {
           <ul>
             {starshipArray.map((starship) => {
               return (
-                <li>
+                <li key={starship}>
                   <p>{starships[starship - 1]}</p>
                 </li>
               );
@@ -111,9 +113,16 @@ const Characters = ({ characters, species, planets, starships }) => {
         </Card.Text>
       </Card.Body>
       <div className="d-flex justify-content-end m-3">
-        <Button onClick={() => handleFavourites(index)}>
+        <div
+          className="d-column-flex justify-content-end"
+          onClick={() => handleFavourites(index)}
+        >
+          {/* <p>Add to My Galactic League</p> */}
+          <img src={noFav} alt="falcon" style={{ height: "36px" }} />
+        </div>
+        {/* <Button onClick={() => handleFavourites(index)}>
           Add to favourites
-        </Button>
+        </Button> */}
       </div>
     </Card>
   ));
