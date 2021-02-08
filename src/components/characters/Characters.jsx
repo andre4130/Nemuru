@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //COMPONENTS
 import Loading from "../loading/Loading";
+import Filter from "../filter/Filter";
 
 //STYLING
 import { Container, CardColumns, Card, Button } from "react-bootstrap";
@@ -120,6 +121,12 @@ const Characters = ({ characters, species, planets, starships }) => {
   return (
     <Container className="mt-5">
       <Container>
+        <Filter
+          characters={characters}
+          species={species}
+          planets={planets}
+          starships={starships}
+        />
         {!characters.length ? (
           <div className="d-inline-flex w-100 justify-content-center">
             <Loading />
