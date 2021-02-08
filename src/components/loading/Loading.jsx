@@ -5,6 +5,7 @@ const Loading = () => {
   return (
     <div className="App-header">
       <img src={falcon} className="loading" alt="loading" />
+      <p>loading...</p>
     </div>
   );
 };

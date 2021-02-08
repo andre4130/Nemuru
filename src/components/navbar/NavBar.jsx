@@ -23,17 +23,20 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav" className="ml-lg-4">
         <Nav className="mr-auto">
-          <Link className="navbar-dark navbar-nav nav-link" to="/species">
-            Razas
-          </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/characters">
-            Personajes
+            Characters
+          </Link>
+          <Link className="navbar-dark navbar-nav nav-link" to="/species">
+            Spieces
           </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/planets">
-            Planetas
+            Planets
           </Link>
           <Link className="navbar-nav nav-link" to="/starships">
             Starships
+          </Link>
+          <Link className="navbar-nav nav-link" to="/mygalacticleague">
+            My Galactic League
           </Link>
         </Nav>
       </Navbar.Collapse>

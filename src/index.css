@@ -13,13 +13,12 @@ body {
   cursor: url("./assets/img/lightsaber.png"), auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.App {
+  color: #ffe81f;
 }
 
 /*  COLOR PALLETTE */
-/* yellow --> #f5e70a */
+/* yellow --> #FFE81F*/
 
 /*NAVBAR*/
 
@@ -28,15 +27,31 @@ code {
   cursor: url("./assets/svg/lightsaber.svg"), 4 12, pointer;
 }
 
-.nav-link.navbar-nav.nav-link {
-  color: #f5e70a;
-  font-weight: bold;
-  font-size: 1.2rem;
+/*Button*/
+
+.btn {
+  background: #ffe81f !important;
+  border: solid 1px black;
+  color: black;
 }
 
-.App {
-  text-align: center;
-  color: #f5e70a;
+.btn:hover {
+  border: solid 1px white;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(32, 32, 32, 0.5);
+  border: solid 1px grey;
+}
+
+.btn:disabled {
+  border: solid 1px black;
+}
+
+.nav-link.navbar-nav.nav-link {
+  color: #ffe81f;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .loading {

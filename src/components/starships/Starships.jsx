@@ -11,6 +11,7 @@ const Starships = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [spaceships, setSpaceships] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState("?");
 
   const goToNext = () => setCurrentPage(currentPage + 1);
 
@@ -39,8 +40,8 @@ const Starships = () => {
       .then(
         (data) => {
           setSpaceships(data.results);
-          // setNextPage(data.next);
-          // setPrevPage(data.previous);
+          var calc = Math.ceil(data.count / 10);
+          setPages(calc);
         },
         (error) => {
           setIsLoaded(true);
@@ -55,13 +56,13 @@ const Starships = () => {
     fetchFunction();
   }, [currentPage]);
 
-  console.log(spaceships);
-
   const shipList = spaceships.map((ship, index) => (
     <Card key={index} bg="dark" text="white">
       <Card.Body>
         <Card.Title>
-          <h3>{ship.name}</h3>
+          <h3>
+            <b>{ship.name}</b>
+          </h3>
         </Card.Title>
         <Card.Text>
           <b>Model:</b> {ship.model}
@@ -75,38 +76,41 @@ const Starships = () => {
 
   return (
     <Container className="MainPage mt-3">
-      <div>
-        {spaceships === [] ? <Loading /> : null}
+      <div className="d-inline-flex w-100 justify-content-center mt-3">
         {currentPage === 1 ? (
-          <Button className="m-1 secondary" onClick={() => goToPrev()} disabled>
-            {" "}
-            Previous Page{" "}
+          <Button className="m-1" onClick={() => goToPrev()} disabled>
+            Previous Page
           </Button>
         ) : (
-          <Button className="m-1 secondary" onClick={() => goToPrev()}>
-            {" "}
-            Previous Page{" "}
+          <Button className="m-1" onClick={() => goToPrev()}>
+            Previous Page
           </Button>
         )}
-        <Button className="m-1" variant="dark">
-          {" "}
-          {currentPage}{" "}
-        </Button>
-        {currentPage === 4 ? (
-          <Button className="m-1 secondary" onClick={() => goToNext()} disabled>
-            {" "}
-            Next Page{" "}
+        <div
+          className="d-flex m-1 p-2 bg-dark align-items-center"
+          style={{ height: "38px", borderRadius: "5px" }}
+        >
+          {currentPage}/{pages}
+        </div>
+        {currentPage === pages ? (
+          <Button className="m-1" onClick={() => goToNext()} disabled>
+            Next Page
           </Button>
         ) : (
-          <Button className="m-1 secondary" onClick={() => goToNext()}>
-            {" "}
-            Next Page{" "}
+          <Button className="m-1" onClick={() => goToNext()}>
+            Next Page
           </Button>
         )}
       </div>
       <hr />
       <Container>
-        <CardColumns>{shipList}</CardColumns>
+        {!spaceships.length ? (
+          <div className="d-inline-flex w-100 justify-content-center">
+            <Loading />
+          </div>
+        ) : (
+          <CardColumns>{shipList}</CardColumns>
+        )}
       </Container>
     </Container>
   );
