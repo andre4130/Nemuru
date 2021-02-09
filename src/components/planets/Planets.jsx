@@ -24,7 +24,6 @@ const Planets = () => {
       .then(
         (data) => {
           setPlanets(data.results);
-          // console.log(data.result);
         },
         (error) => {
           setIsLoaded(true);

@@ -3,6 +3,7 @@ body {
   font-family: "News Cycle", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 html,
@@ -31,6 +32,21 @@ body {
   color: #ffe81f;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+/*Homepage*/
+
+.homepage {
+  height: 90vh;
+}
+
+.homepage img {
+  height: 300px;
+}
+
+.homepage img:hover {
+  transform: scale(1.05);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
 }
 
 /*Button*/
