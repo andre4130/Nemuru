@@ -25,7 +25,10 @@ body {
 
 .navbar {
   text-align: start;
-  cursor: url("./assets/svg/lightsaber.svg"), 4 12, pointer;
+  background-image: url("./assets/img/lightspeed.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .nav-link.navbar-nav.nav-link {

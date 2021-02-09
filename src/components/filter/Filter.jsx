@@ -3,27 +3,58 @@ import React, { useState, useEffect } from "react";
 //STYLING
 import { Form } from "react-bootstrap";
 
-const Filter = ({ planets, species, characters, starships }) => {
-  const [filter, setFilter] = useState("");
-
-  //   useEffect(() => {
-  //     console.log("in filter", planets);
-  //   }, [planets]);
-
-  const handleSelect = (e) => {
+const Filter = ({
+  planets,
+  species,
+  characters,
+  starships,
+  setCharacters,
+  charactersFiltered,
+  setFiltered,
+  filter,
+  select,
+  setFilter,
+  setSelect,
+}) => {
+  const handleFilter = (e) => {
     e.preventDefault();
     setFilter(e.target.value);
   };
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    setSelect(e.target.value);
+  };
+
+  const filterList = () => {
+    switch (true) {
+      case filter === "name":
+        let filtered = characters.filter((item) => {
+          if (item !== undefined && item.name === select) {
+            return true;
+          }
+        });
+        setFiltered(filtered);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    filterList();
+  }, [filter, select]);
 
   const renderOutput = () => {
     switch (true) {
       case filter === "":
         return null;
-      case filter === "planet":
+      case filter === "homeworld":
         return (
           <Form.Group controlId="filter">
             <Form.Label>Please Select a Planet</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" onChange={(e) => handleSelect(e)}>
+              <option value="">Please select...</option>
               {planets.map((planet) => {
                 return (
                   <option key={planet} value={planet}>
@@ -34,11 +65,12 @@ const Filter = ({ planets, species, characters, starships }) => {
             </Form.Control>
           </Form.Group>
         );
-      case filter === "specie":
+      case filter === "species":
         return (
           <Form.Group controlId="filter">
             <Form.Label>Please Select a Specie</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" onChange={(e) => handleSelect(e)}>
+              <option value="">Please select...</option>
               {species.map((specie) => {
                 return (
                   <option key={specie} value={specie}>
@@ -49,11 +81,12 @@ const Filter = ({ planets, species, characters, starships }) => {
             </Form.Control>
           </Form.Group>
         );
-      case filter === "character":
+      case filter === "name":
         return (
           <Form.Group controlId="filter">
             <Form.Label>Please Select a Character</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" onChange={(e) => handleSelect(e)}>
+              <option value="">Please select...</option>
               {characters.map((character) => {
                 return (
                   <option key={character.name} value={character.name}>
@@ -64,11 +97,12 @@ const Filter = ({ planets, species, characters, starships }) => {
             </Form.Control>
           </Form.Group>
         );
-      case filter === "starship":
+      case filter === "starships":
         return (
           <Form.Group controlId="filter">
             <Form.Label>Please Select a Starship</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" onChange={(e) => handleSelect(e)}>
+              <option value="">Please select...</option>
               {starships.map((starship) => {
                 return (
                   <option key={starship} value={starship}>
@@ -89,12 +123,12 @@ const Filter = ({ planets, species, characters, starships }) => {
       <div className="col-5 pl-0 pr-2">
         <Form.Group controlId="filter">
           <Form.Label>Filter by</Form.Label>
-          <Form.Control as="select" onChange={(e) => handleSelect(e)}>
+          <Form.Control as="select" onChange={(e) => handleFilter(e)}>
             <option value="">Please select...</option>
-            <option value="planet">Planets</option>
-            <option value="specie">Species</option>
-            <option value="character">Characters</option>
-            <option value="starship">Starships</option>
+            <option value="homeworld">Planets</option>
+            <option value="species">Species</option>
+            <option value="name">Characters</option>
+            <option value="starships">Starships</option>
           </Form.Control>
         </Form.Group>
       </div>

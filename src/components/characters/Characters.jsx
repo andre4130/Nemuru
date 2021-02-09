@@ -6,7 +6,7 @@ import Filter from "../filter/Filter";
 import SingleCharacter from "./SingleCharacter";
 
 //STYLING
-import { Container, CardColumns, Card, Button } from "react-bootstrap";
+import { Container, CardColumns } from "react-bootstrap";
 import fav from "../../assets/svg/falcon_yellow.svg";
 import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
 
@@ -20,6 +20,14 @@ const Characters = ({
   setFavourites,
   handleFavourites,
 }) => {
+  const [charactersFiltered, setFiltered] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [select, setSelect] = useState("");
+
+  useEffect(() => {
+    setFiltered(characters);
+  }, []);
+
   const getSpecie = (character) => {
     const specieData = character.species;
     if (specieData.length > 0) {
@@ -104,6 +112,13 @@ const Characters = ({
           species={species}
           planets={planets}
           starships={starships}
+          charactersFiltered={charactersFiltered}
+          setFiltered={setFiltered}
+          setCharacters={setCharacters}
+          filter={filter}
+          select={select}
+          setFilter={setFilter}
+          setSelect={setSelect}
         />
         {!characters.length ? (
           <div className="d-inline-flex w-100 justify-content-center">
@@ -111,17 +126,29 @@ const Characters = ({
           </div>
         ) : (
           <CardColumns>
-            {characters.map((character, index) => (
-              <SingleCharacter
-                character={character}
-                index={index}
-                id={character.name}
-                getSpecie={getSpecie}
-                getStarship={getStarship}
-                getPlanet={getPlanet}
-                handleFavourites={handleFavourites}
-              />
-            ))}
+            {filter !== ""
+              ? charactersFiltered.map((character, index) => (
+                  <SingleCharacter
+                    character={character}
+                    index={index}
+                    id={character.name}
+                    getSpecie={getSpecie}
+                    getStarship={getStarship}
+                    getPlanet={getPlanet}
+                    handleFavourites={handleFavourites}
+                  />
+                ))
+              : characters.map((character, index) => (
+                  <SingleCharacter
+                    character={character}
+                    index={index}
+                    id={character.name}
+                    getSpecie={getSpecie}
+                    getStarship={getStarship}
+                    getPlanet={getPlanet}
+                    handleFavourites={handleFavourites}
+                  />
+                ))}
           </CardColumns>
         )}
       </Container>

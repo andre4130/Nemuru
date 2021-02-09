@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-
-//Components
+import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 //MEDIA
 import rebel from "../../assets/svg/rebel.svg";
@@ -12,7 +9,6 @@ const NavBar = ({ favourites }) => {
   const [number, setNumber] = useState(favourites.length);
 
   useEffect(() => {
-    console.log("favs changed");
     setNumber(favourites.length);
   }, [favourites]);
 
@@ -47,10 +43,10 @@ const NavBar = ({ favourites }) => {
           </Link>
           <div
             style={{
-              color: "red",
+              color: "#FEFFFC",
               fontSize: "1rem",
-              // margin: "5px",
               positionTop: "2px",
+              textShadow: "black 1px 1px",
             }}
           >
             {number}
