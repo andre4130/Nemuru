@@ -27,6 +27,12 @@ body {
   cursor: url("./assets/svg/lightsaber.svg"), 4 12, pointer;
 }
 
+.nav-link.navbar-nav.nav-link {
+  color: #ffe81f;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 /*Button*/
 
 .btn {
@@ -48,11 +54,18 @@ body {
   border: solid 1px black;
 }
 
-.nav-link.navbar-nav.nav-link {
-  color: #ffe81f;
-  font-weight: bold;
-  font-size: 1.2rem;
+/*MY GALACTIC LEAGUE*/
+
+.fav-icon {
+  height: 36px;
 }
+
+.fav-icon:hover {
+  transform: scale(1.15);
+  transition: all 0.2s ease-in-out;
+}
+
+/*LOADING COMPONENT*/
 
 .loading {
   height: 80px;
@@ -63,21 +76,6 @@ body {
   .loading {
     animation: loading-spin infinite 5s linear;
   }
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes loading-spin {

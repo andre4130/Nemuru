@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState, useCallback } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-//STYLING
-import { Navbar, Nav, Button } from "react-bootstrap";
-
-//MEDIA
-import rebel from "./assets/svg/rebel.svg";
-
 //COMPONENTS
-import Loading from "./components/loading/Loading";
 import NavBar from "./components/navbar/NavBar";
 import Homepage from "./components/homepage/Homepage";
 import Planets from "./components/planets/Planets";
@@ -26,11 +18,15 @@ function App() {
   const [planets, setPlanets] = useState([]);
   const [starships, setStarships] = useState([]);
   const [characters, setCharacters] = useState([]);
+  const [favourites, setFavourites] = useState(
+    JSON.parse(localStorage.getItem("favList")) || []
+  );
 
   var arraySpecies = [];
   var arrayPlanets = [];
   var arrayStarships = [];
   var arrayCharacters = [];
+  var arrayCharactersFav = [];
 
   const fetchSpecies = async () => {
     for (let i = 1; i < 5; i++) {
@@ -44,6 +40,8 @@ function App() {
             }
           },
           (error) => {
+            var temp = "";
+            arraySpecies.push(temp);
             setIsLoaded(true);
             setError(error);
             console.log("error!", error);
@@ -65,6 +63,8 @@ function App() {
             }
           },
           (error) => {
+            var temp = "";
+            arrayPlanets.push(temp);
             setIsLoaded(true);
             setError(error);
             console.log("error!", error);
@@ -86,6 +86,8 @@ function App() {
             }
           },
           (error) => {
+            var temp = "";
+            arrayStarships.push(temp);
             setIsLoaded(true);
             setError(error);
             console.log("error!", error);
@@ -107,6 +109,8 @@ function App() {
             }
           },
           (error) => {
+            var temp = "";
+            arrayCharacters.push(temp);
             setIsLoaded(true);
             setError(error);
             console.log("error!", error);
@@ -115,6 +119,44 @@ function App() {
     }
     setCharacters(arrayCharacters);
   };
+
+  // const favTag = () => {
+  //   characters.map((character) => {
+  //     character = { ...character, isFav: false };
+  //     arrayCharactersFav.push(character);
+  //   });
+  //   setCharacters(arrayCharactersFav);
+  // };
+
+  const handleFavourites = (i) => {
+    if (!favourites.length) {
+      setFavourites([characters[i]]);
+    }
+    if (favourites.length > 9) {
+      alert("Your List of Favourites has reached the limit of 10 characters");
+      return;
+    }
+    if (characters[i] && !favourites.includes(characters[i])) {
+      setFavourites([...favourites, characters[i]]);
+    } else if (favourites.includes(characters[i])) {
+      alert(`${characters[i].name} is already included in your Favourites`);
+    }
+  };
+
+  const handleRemove = (e) => {
+    var arr = [...favourites];
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].name === e.target.value) {
+        arr.splice(i, 1);
+        setFavourites(arr);
+        window.localStorage.setItem("favList", JSON.stringify(arr));
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.localStorage.setItem("favList", JSON.stringify(favourites));
+  }, [favourites]);
 
   useEffect(() => {
     fetchSpecies();
@@ -127,7 +169,7 @@ function App() {
     <div className="App">
       <Router>
         <div>
-          <NavBar />
+          <NavBar favourites={favourites} />
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/planets" exact component={Planets} />
@@ -140,14 +182,25 @@ function App() {
                   species={species}
                   planets={planets}
                   starships={starships}
+                  favourites={favourites}
+                  setCharacters={setCharacters}
+                  setFavourites={setFavourites}
+                  handleFavourites={handleFavourites}
                 />
               )}
             />
             <Route path="/starships" exact component={Starships} />
             <Route
               path="/mygalacticleague"
-              exact
-              component={MyGalacticLeague}
+              render={() => (
+                <MyGalacticLeague
+                  characters={characters}
+                  favourites={favourites}
+                  setFavourites={setFavourites}
+                  handleFavourites={handleFavourites}
+                  handleRemove={handleRemove}
+                />
+              )}
             />
           </Switch>
         </div>
