@@ -18,7 +18,7 @@ const MyGalacticLeague = ({
           <div className="container d-flex-column w-75">
             {favourites.map((fav, index) => {
               return (
-                <div className="container py-2">
+                <div className="container py-2" key={index}>
                   <Card index={fav.name} bg="dark">
                     <Card.Header as="h5">
                       <b>{fav.name}</b>

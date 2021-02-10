@@ -21,6 +21,8 @@ function App() {
   const [favourites, setFavourites] = useState(
     JSON.parse(localStorage.getItem("favList")) || []
   );
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [charactersFiltered, setFiltered] = useState([]);
 
   var arraySpecies = [];
   var arrayPlanets = [];
@@ -120,26 +122,38 @@ function App() {
     setCharacters(arrayCharacters);
   };
 
-  // const favTag = () => {
-  //   characters.map((character) => {
-  //     character = { ...character, isFav: false };
-  //     arrayCharactersFav.push(character);
-  //   });
-  //   setCharacters(arrayCharactersFav);
-  // };
+  //use set is filtered here
 
   const handleFavourites = (i) => {
-    if (!favourites.length) {
-      setFavourites([characters[i]]);
+    if (!isFiltered) {
+      if (!favourites.length) {
+        setFavourites([characters[i]]);
+      }
+      if (favourites.length > 9) {
+        alert("Your List of Favourites has reached the limit of 10 characters");
+        return;
+      }
+      if (characters[i] && !favourites.includes(characters[i])) {
+        setFavourites([...favourites, characters[i]]);
+      } else if (favourites.includes(characters[i])) {
+        alert(`${characters[i].name} is already included in your Favourites`);
+      }
     }
-    if (favourites.length > 9) {
-      alert("Your List of Favourites has reached the limit of 10 characters");
-      return;
-    }
-    if (characters[i] && !favourites.includes(characters[i])) {
-      setFavourites([...favourites, characters[i]]);
-    } else if (favourites.includes(characters[i])) {
-      alert(`${characters[i].name} is already included in your Favourites`);
+    if (isFiltered) {
+      if (!favourites.length) {
+        setFavourites([charactersFiltered[i]]);
+      }
+      if (favourites.length > 9) {
+        alert("Your List of Favourites has reached the limit of 10 characters");
+        return;
+      }
+      if (characters[i] && !favourites.includes(charactersFiltered[i])) {
+        setFavourites([...favourites, charactersFiltered[i]]);
+      } else if (favourites.includes(charactersFiltered[i])) {
+        alert(
+          `${charactersFiltered[i].name} is already included in your Favourites`
+        );
+      }
     }
   };
 
@@ -183,9 +197,12 @@ function App() {
                   planets={planets}
                   starships={starships}
                   favourites={favourites}
+                  charactersFiltered={charactersFiltered}
+                  setIsFiltered={setIsFiltered}
                   setCharacters={setCharacters}
                   setFavourites={setFavourites}
                   handleFavourites={handleFavourites}
+                  setFiltered={setFiltered}
                 />
               )}
             />
@@ -210,3 +227,11 @@ function App() {
 }
 
 export default App;
+
+// const favTag = () => {
+//   characters.map((character) => {
+//     character = { ...character, isFav: false };
+//     arrayCharactersFav.push(character);
+//   });
+//   setCharacters(arrayCharactersFav);
+// };

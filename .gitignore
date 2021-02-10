@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+#media
+src/assets/img/squares.psd
 
 # production
 /build

@@ -30,7 +30,7 @@ const NavBar = ({ favourites }) => {
             Characters
           </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/species">
-            Spieces
+            Species
           </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/planets">
             Planets

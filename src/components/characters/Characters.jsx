@@ -19,8 +19,11 @@ const Characters = ({
   favourites,
   setFavourites,
   handleFavourites,
+  isFiltered,
+  setIsFiltered,
+  charactersFiltered,
+  setFiltered,
 }) => {
-  const [charactersFiltered, setFiltered] = useState([]);
   const [filter, setFilter] = useState("");
   const [select, setSelect] = useState("");
 
@@ -51,7 +54,6 @@ const Characters = ({
     if (planetData.length > 0) {
       var res = planetData.split("/");
       var planetID = res[5];
-      // setCharacters({ ...character, planet: planetID });
     }
 
     return (
@@ -119,6 +121,7 @@ const Characters = ({
           select={select}
           setFilter={setFilter}
           setSelect={setSelect}
+          setIsFiltered={setIsFiltered}
         />
         {!characters.length ? (
           <div className="d-inline-flex w-100 justify-content-center">
@@ -129,6 +132,7 @@ const Characters = ({
             {filter !== ""
               ? charactersFiltered.map((character, index) => (
                   <SingleCharacter
+                    key={character.name}
                     character={character}
                     index={index}
                     id={character.name}
@@ -140,6 +144,7 @@ const Characters = ({
                 ))
               : characters.map((character, index) => (
                   <SingleCharacter
+                    key={character.name}
                     character={character}
                     index={index}
                     id={character.name}

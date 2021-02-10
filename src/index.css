@@ -25,10 +25,10 @@ body {
 
 .navbar {
   text-align: start;
-  background-image: url("./assets/img/lightspeed.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  /* background-image: url("./assets/img/lightspeed.jpg");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;  */
 }
 
 .nav-link.navbar-nav.nav-link {
@@ -43,6 +43,11 @@ body {
   height: 90vh;
 }
 
+.homepage div {
+  height: 300px;
+  overflow: hidden;
+}
+
 .homepage img {
   height: 300px;
 }
@@ -50,6 +55,41 @@ body {
 .homepage img:hover {
   transform: scale(1.05);
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+}
+
+div.effect-home img:hover {
+  transform: scale(1.05);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+}
+
+div.effect-home figcaption {
+  background: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.6),
+    rgba(90, 90, 90, 0.5)
+  );
+  color: black;
+  display: block;
+  position: relative;
+  height: 300px;
+  top: -300px;
+  z-index: 2;
+  -webkit-transition: opacity 0.65s;
+  transition: opacity 0.65s;
+  opacity: 0;
+  transition: opacity 0.65, transform 0.45, easy-out;
+}
+
+.box {
+  color: #ffe81f;
+}
+
+div.effect-home:hover figcaption {
+  opacity: 1;
+}
+
+div.effect-home:hover a {
+  text-decoration: none;
 }
 
 /*Button*/

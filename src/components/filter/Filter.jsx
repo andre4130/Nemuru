@@ -15,6 +15,7 @@ const Filter = ({
   select,
   setFilter,
   setSelect,
+  setIsFiltered,
 }) => {
   const handleFilter = (e) => {
     e.preventDefault();
@@ -29,20 +30,38 @@ const Filter = ({
   const filterList = () => {
     switch (true) {
       case filter === "name":
-        let filtered = characters.filter((item) => {
+        let name = characters.filter((item) => {
           if (item !== undefined && item.name === select) {
             return true;
           }
         });
-        setFiltered(filtered);
+        setFiltered(name);
+        break;
+      case filter === "homeworld":
+        let homeworld = characters.filter((item) => {
+          if (item !== undefined && item.homeworld === select) {
+            return true;
+          }
+        });
+        setFiltered(homeworld);
         break;
       default:
         break;
     }
   };
 
+  const filterFlag = () => {
+    if (filter === "") {
+      setIsFiltered(false);
+    }
+    if (filter !== "") {
+      setIsFiltered(true);
+    }
+  };
+
   useEffect(() => {
     filterList();
+    filterFlag();
   }, [filter, select]);
 
   const renderOutput = () => {
@@ -124,7 +143,7 @@ const Filter = ({
         <Form.Group controlId="filter">
           <Form.Label>Filter by</Form.Label>
           <Form.Control as="select" onChange={(e) => handleFilter(e)}>
-            <option value="">Please select...</option>
+            <option value="">All Characters</option>
             <option value="homeworld">Planets</option>
             <option value="species">Species</option>
             <option value="name">Characters</option>
