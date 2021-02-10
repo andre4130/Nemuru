@@ -3,6 +3,7 @@ body {
   font-family: "News Cycle", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 html,
@@ -24,7 +25,71 @@ body {
 
 .navbar {
   text-align: start;
-  cursor: url("./assets/svg/lightsaber.svg"), 4 12, pointer;
+  /* background-image: url("./assets/img/lightspeed.jpg");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;  */
+}
+
+.nav-link.navbar-nav.nav-link {
+  color: #ffe81f;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/*Homepage*/
+
+.homepage {
+  height: 90vh;
+}
+
+.homepage div {
+  height: 300px;
+  overflow: hidden;
+}
+
+.homepage img {
+  height: 300px;
+}
+
+.homepage img:hover {
+  transform: scale(1.05);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+}
+
+div.effect-home img:hover {
+  transform: scale(1.05);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+}
+
+div.effect-home figcaption {
+  background: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.6),
+    rgba(90, 90, 90, 0.5)
+  );
+  color: black;
+  display: block;
+  position: relative;
+  height: 300px;
+  top: -300px;
+  z-index: 2;
+  -webkit-transition: opacity 0.65s;
+  transition: opacity 0.65s;
+  opacity: 0;
+  transition: opacity 0.65, transform 0.45, easy-out;
+}
+
+.box {
+  color: #ffe81f;
+}
+
+div.effect-home:hover figcaption {
+  opacity: 1;
+}
+
+div.effect-home:hover a {
+  text-decoration: none;
 }
 
 /*Button*/
@@ -48,11 +113,18 @@ body {
   border: solid 1px black;
 }
 
-.nav-link.navbar-nav.nav-link {
-  color: #ffe81f;
-  font-weight: bold;
-  font-size: 1.2rem;
+/*MY GALACTIC LEAGUE*/
+
+.fav-icon {
+  height: 36px;
 }
+
+.fav-icon:hover {
+  transform: scale(1.15);
+  transition: all 0.2s ease-in-out;
+}
+
+/*LOADING COMPONENT*/
 
 .loading {
   height: 80px;
@@ -63,21 +135,6 @@ body {
   .loading {
     animation: loading-spin infinite 5s linear;
   }
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes loading-spin {

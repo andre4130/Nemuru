@@ -3,16 +3,33 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Loading from "../loading/Loading";
 import Filter from "../filter/Filter";
+import SingleCharacter from "./SingleCharacter";
 
 //STYLING
-import { Container, CardColumns, Card, Button } from "react-bootstrap";
+import { Container, CardColumns } from "react-bootstrap";
 import fav from "../../assets/svg/falcon_yellow.svg";
 import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
 
-const Characters = ({ characters, species, planets, starships }) => {
-  const handleFavourites = (i) => {
-    console.log(i);
-  };
+const Characters = ({
+  characters,
+  species,
+  planets,
+  starships,
+  setCharacters,
+  favourites,
+  setFavourites,
+  handleFavourites,
+  isFiltered,
+  setIsFiltered,
+  charactersFiltered,
+  setFiltered,
+}) => {
+  const [filter, setFilter] = useState("");
+  const [select, setSelect] = useState("");
+
+  useEffect(() => {
+    setFiltered(characters);
+  }, []);
 
   const getSpecie = (character) => {
     const specieData = character.species;
@@ -55,13 +72,20 @@ const Characters = ({ characters, species, planets, starships }) => {
     var starshipArray = [];
     if (starshipData.length > 0) {
       for (let i = 0; i < starshipData.length; i++) {
-        var res = starshipData[i].split("/");
-        var starshipID = res[5];
-        starshipArray.push(starshipID);
+        var url = starshipData[i];
+        fetch(url)
+          .then((res) => res.json())
+          .then(
+            (data) => {
+              var starshipID = data.name;
+              starshipArray.push(starshipID);
+            },
+            (error) => {
+              console.log("error!", error);
+            }
+          );
       }
     }
-
-    //starships are not correct
 
     return (
       <>
@@ -82,51 +106,6 @@ const Characters = ({ characters, species, planets, starships }) => {
     );
   };
 
-  const charactersList = characters.map((character, index) => (
-    <Card key={index} bg="dark" text="white">
-      <Card.Body>
-        <Card.Title>
-          <h3>
-            <b>{character.name}</b>
-          </h3>
-        </Card.Title>
-        <Card.Text>
-          <b>Height:</b> {character.height}
-        </Card.Text>
-        <Card.Text>
-          <b>Gender:</b> {character.gender}
-        </Card.Text>
-        <Card.Text>
-          <div className="d-inline-flex">
-            <b>Specie:</b> {getSpecie(character)}
-          </div>
-        </Card.Text>
-        <Card.Text>
-          <div className="d-inline-flex">
-            <b>Starship(s):</b> {getStarship(character)}
-          </div>
-        </Card.Text>
-        <Card.Text>
-          <div className="d-inline-flex">
-            <b>Planet:</b> {getPlanet(character)}
-          </div>
-        </Card.Text>
-      </Card.Body>
-      <div className="d-flex justify-content-end m-3">
-        <div
-          className="d-column-flex justify-content-end"
-          onClick={() => handleFavourites(index)}
-        >
-          {/* <p>Add to My Galactic League</p> */}
-          <img src={noFav} alt="falcon" style={{ height: "36px" }} />
-        </div>
-        {/* <Button onClick={() => handleFavourites(index)}>
-          Add to favourites
-        </Button> */}
-      </div>
-    </Card>
-  ));
-
   return (
     <Container className="mt-5">
       <Container>
@@ -135,13 +114,47 @@ const Characters = ({ characters, species, planets, starships }) => {
           species={species}
           planets={planets}
           starships={starships}
+          charactersFiltered={charactersFiltered}
+          setFiltered={setFiltered}
+          setCharacters={setCharacters}
+          filter={filter}
+          select={select}
+          setFilter={setFilter}
+          setSelect={setSelect}
+          setIsFiltered={setIsFiltered}
         />
         {!characters.length ? (
           <div className="d-inline-flex w-100 justify-content-center">
             <Loading />
           </div>
         ) : (
-          <CardColumns>{charactersList}</CardColumns>
+          <CardColumns>
+            {filter !== ""
+              ? charactersFiltered.map((character, index) => (
+                  <SingleCharacter
+                    key={character.name}
+                    character={character}
+                    index={index}
+                    id={character.name}
+                    getSpecie={getSpecie}
+                    getStarship={getStarship}
+                    getPlanet={getPlanet}
+                    handleFavourites={handleFavourites}
+                  />
+                ))
+              : characters.map((character, index) => (
+                  <SingleCharacter
+                    key={character.name}
+                    character={character}
+                    index={index}
+                    id={character.name}
+                    getSpecie={getSpecie}
+                    getStarship={getStarship}
+                    getPlanet={getPlanet}
+                    handleFavourites={handleFavourites}
+                  />
+                ))}
+          </CardColumns>
         )}
       </Container>
     </Container>

@@ -1,14 +1,17 @@
-import React from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-
-//Components
+import React, { useState, useEffect } from "react";
+import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 //MEDIA
 import rebel from "../../assets/svg/rebel.svg";
 
-const NavBar = () => {
+const NavBar = ({ favourites }) => {
+  const [number, setNumber] = useState(favourites.length);
+
+  useEffect(() => {
+    setNumber(favourites.length);
+  }, [favourites]);
+
   return (
     <Navbar
       collapseOnSelect
@@ -27,7 +30,7 @@ const NavBar = () => {
             Characters
           </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/species">
-            Spieces
+            Species
           </Link>
           <Link className="navbar-dark navbar-nav nav-link" to="/planets">
             Planets
@@ -38,6 +41,16 @@ const NavBar = () => {
           <Link className="navbar-nav nav-link" to="/mygalacticleague">
             My Galactic League
           </Link>
+          <div
+            style={{
+              color: "#FEFFFC",
+              fontSize: "1rem",
+              positionTop: "2px",
+              textShadow: "black 1px 1px",
+            }}
+          >
+            {number}
+          </div>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
