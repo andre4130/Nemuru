@@ -23,8 +23,6 @@ const Testing = ({ characters }) => {
     setPlanetArray(array);
   };
 
-  console.log(planetArray);
-
   useEffect(() => {
     setTesting(characters);
   }, [characters]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //STYLING
-import { Container, CardColumns, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import fav from "../../assets/svg/falcon_yellow.svg";
 import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
 
@@ -10,7 +10,6 @@ const SingleCharacter = ({
   index,
   getSpecie,
   getStarship,
-  getPlanet,
   handleFavourites,
 }) => {
   return (
@@ -23,24 +22,27 @@ const SingleCharacter = ({
             </h3>
           </Card.Title>
           <Card.Text>
-            <b>Height:</b> {character.height}
+            <b>Height: </b> {character.height}
           </Card.Text>
           <Card.Text>
-            <b>Gender:</b> {character.gender}
+            <b>Gender: </b> {character.gender}
           </Card.Text>
           <Card.Text>
             <div className="d-inline-flex">
-              <b>Specie:</b> {getSpecie(character)}
+              <b>Specie: </b> {getSpecie(character)}
             </div>
           </Card.Text>
           <Card.Text>
             <div className="d-inline-flex">
-              <b>Starship(s):</b> {getStarship(character)}
+              <b>Starship(s): </b> {getStarship(character)}
             </div>
           </Card.Text>
           <Card.Text>
             <div className="d-inline-flex">
-              <b>Planet:</b> {getPlanet(character)}
+              <b>Planet: &nbsp;</b>{" "}
+              {character.homeworld.startsWith("http")
+                ? " Planets are loading..."
+                : ` ${character.homeworld}`}
             </div>
           </Card.Text>
         </Card.Body>
