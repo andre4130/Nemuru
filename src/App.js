@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //COMPONENTS
@@ -9,6 +9,8 @@ import Species from "./components/species/Species";
 import Starships from "./components/starships/Starships";
 import Characters from "./components/characters/Characters";
 import MyGalacticLeague from "./components/myGalacticLeague/MyGalacticLeague";
+
+import Testing from "./components/testing/Testing";
 
 function App() {
   //Fetching of the API information
@@ -221,6 +223,7 @@ function App() {
             />
           </Switch>
         </div>
+        <Testing characters={characters} />
       </Router>
     </div>
   );
