@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //COMPONENTS
@@ -9,6 +9,8 @@ import Species from "./components/species/Species";
 import Starships from "./components/starships/Starships";
 import Characters from "./components/characters/Characters";
 import MyGalacticLeague from "./components/myGalacticLeague/MyGalacticLeague";
+
+import Testing from "./components/testing/Testing";
 
 function App() {
   //Fetching of the API information
@@ -24,11 +26,60 @@ function App() {
   const [isFiltered, setIsFiltered] = useState(false);
   const [charactersFiltered, setFiltered] = useState([]);
 
+  //planetArray is set to true to trigger the function that fills the array with the name of the planet
+  const [planetArray, setPlanetArray] = useState(false);
+
   var arraySpecies = [];
   var arrayPlanets = [];
   var arrayStarships = [];
   var arrayCharacters = [];
   var arrayCharactersFav = [];
+  var array = [];
+
+  const fetchCharacters = async () => {
+    for (let i = 1; i < 10; i++) {
+      await fetch(`https://swapi.dev/api/people/?page=${i}`)
+        .then((res) => res.json())
+        .then(
+          (data) => {
+            var temp = data.results;
+            for (let i = 0; i < temp.length; i++) {
+              arrayCharacters.push(temp[i]);
+            }
+          },
+          (error) => {
+            var temp = "";
+            arrayCharacters.push(temp);
+            setIsLoaded(true);
+            setError(error);
+            console.log("error!", error);
+          }
+        );
+    }
+    setCharacters(arrayCharacters);
+    setPlanetArray(true);
+  };
+
+  const addPlanets = async () => {
+    for (let i = 0; i < characters.length; i++) {
+      const planetData = characters[i].homeworld;
+      await fetch(planetData)
+        .then((res) => res.json())
+        .then(
+          (data) => {
+            var temp = data.name;
+            var obj = { ...characters[i], homeworld: temp };
+            array.push(obj);
+          },
+          (error) => {
+            console.log("error!", error);
+          }
+        );
+    }
+    setCharacters(array);
+  };
+
+  // console.log("after fetching planets", characters);
 
   const fetchSpecies = async () => {
     for (let i = 1; i < 5; i++) {
@@ -99,30 +150,7 @@ function App() {
     setStarships(arrayStarships);
   };
 
-  const fetchCharacters = async () => {
-    for (let i = 1; i < 10; i++) {
-      await fetch(`https://swapi.dev/api/people/?page=${i}`)
-        .then((res) => res.json())
-        .then(
-          (data) => {
-            var temp = data.results;
-            for (let i = 0; i < temp.length; i++) {
-              arrayCharacters.push(temp[i]);
-            }
-          },
-          (error) => {
-            var temp = "";
-            arrayCharacters.push(temp);
-            setIsLoaded(true);
-            setError(error);
-            console.log("error!", error);
-          }
-        );
-    }
-    setCharacters(arrayCharacters);
-  };
-
-  //use set is filtered here
+  //Function to filter the favourites
 
   const handleFavourites = (i) => {
     if (!isFiltered) {
@@ -179,6 +207,10 @@ function App() {
     fetchCharacters();
   }, []);
 
+  useEffect(() => {
+    addPlanets();
+  }, [planetArray]);
+
   return (
     <div className="App">
       <Router>
@@ -221,6 +253,7 @@ function App() {
             />
           </Switch>
         </div>
+        {/* <Testing characters={characters} /> */}
       </Router>
     </div>
   );

@@ -49,23 +49,23 @@ const Characters = ({
     );
   };
 
-  const getPlanet = (character) => {
-    const planetData = character.homeworld;
-    if (planetData.length > 0) {
-      var res = planetData.split("/");
-      var planetID = res[5];
-    }
+  // const getPlanet = (character) => {
+  //   const planetData = character.homeworld;
+  //   if (planetData.length > 0) {
+  //     var res = planetData.split("/");
+  //     var planetID = res[5];
+  //   }
 
-    return (
-      <>
-        {planets[planetID] === undefined ? (
-          <p>&nbsp;No information</p>
-        ) : (
-          <p>&nbsp;{planets[planetID - 1]}</p>
-        )}
-      </>
-    );
-  };
+  //   return (
+  //     <>
+  //       {planets[planetID] === undefined ? (
+  //         <p>&nbsp;No information</p>
+  //       ) : (
+  //         <p>&nbsp;{planets[planetID - 1]}</p>
+  //       )}
+  //     </>
+  //   );
+  // };
 
   const getStarship = (character) => {
     const starshipData = character.starships;
@@ -138,7 +138,7 @@ const Characters = ({
                     id={character.name}
                     getSpecie={getSpecie}
                     getStarship={getStarship}
-                    getPlanet={getPlanet}
+                    // getPlanet={getPlanet}
                     handleFavourites={handleFavourites}
                   />
                 ))
@@ -150,7 +150,7 @@ const Characters = ({
                     id={character.name}
                     getSpecie={getSpecie}
                     getStarship={getStarship}
-                    getPlanet={getPlanet}
+                    // getPlanet={getPlanet}
                     handleFavourites={handleFavourites}
                   />
                 ))}
