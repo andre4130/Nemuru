@@ -1,4 +1,5 @@
 {
+  "homepage": "https://andre4130.github.io/Nemuru/",
   "name": "nemuru",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,6 +43,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
+    "gh-pages": "^3.1.0",
     "jest-dom": "^4.0.0",
     "react-test-render": "^1.1.2"
   }
