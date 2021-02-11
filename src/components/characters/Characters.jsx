@@ -20,7 +20,6 @@ const Characters = ({
   setFiltered,
   show,
   handleClose,
-  buttonFlag,
   addSpecies,
   addStarships,
   speciesFlag,
@@ -132,7 +131,11 @@ const Characters = ({
           </CardColumns>
         )}
       </Container>
-      <Modal show={show.bool} onHide={handleClose}>
+      <Modal
+        data-test="galactic-league-test"
+        show={show.bool}
+        onHide={handleClose}
+      >
         <Modal.Header closeButton>
           <Modal.Title>My Galactic League</Modal.Title>
         </Modal.Header>

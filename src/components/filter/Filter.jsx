@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 //STYLING
 import { Form } from "react-bootstrap";
@@ -8,8 +8,6 @@ const Filter = ({
   species,
   characters,
   starships,
-  setCharacters,
-  charactersFiltered,
   setFiltered,
   filter,
   select,

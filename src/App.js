@@ -28,7 +28,6 @@ function App() {
   const [planetFlag, setPlanetFlag] = useState(false);
   const [speciesFlag, setSpeciesFlag] = useState(false);
   const [starshipsFlag, setStarshipsFlag] = useState(false);
-  const [buttonFlag, setButtonFlag] = useState(false);
   const [show, setShow] = useState({
     bool: false,
     character: "",
@@ -44,7 +43,8 @@ function App() {
 
   //First function that fetches the list of the characters and adds to a State
   const fetchCharacters = async () => {
-    for (let i = 1; i < 10; i++) {
+    const totalPages = 10;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/people/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -72,7 +72,14 @@ function App() {
   const addPlanets = async () => {
     for (let i = 0; i < characters.length; i++) {
       const planetData = characters[i].homeworld;
-      await fetch(planetData)
+      var s = "s";
+      var position = 4;
+      var planetDataSecure = [
+        planetData.slice(0, position),
+        s,
+        planetData.slice(position),
+      ].join("");
+      await fetch(planetDataSecure)
         .then((res) => res.json())
         .then(
           (data) => {
@@ -97,7 +104,14 @@ function App() {
         var obj = { ...characters[i], species: temp };
         arrayAddSpecies.push(obj);
       } else {
-        await fetch(speciesData)
+        var s = "s";
+        var position = 4;
+        var speciesDataSecure = [
+          speciesData.slice(0, position),
+          s,
+          speciesData.slice(position),
+        ].join("");
+        await fetch(speciesDataSecure)
           .then((res) => res.json())
           .then(
             (data) => {
@@ -124,7 +138,14 @@ function App() {
         var obj = { ...characters[i], starships: temp };
         arrayAddStarships.push(obj);
       } else {
-        await fetch(starshipsData)
+        var s = "s";
+        var position = 4;
+        var speciesDataSecure = [
+          starshipsData.slice(0, position),
+          s,
+          starshipsData.slice(position),
+        ].join("");
+        await fetch(speciesDataSecure)
           .then((res) => res.json())
           .then(
             (data) => {
@@ -144,7 +165,8 @@ function App() {
 
   //Species fetching for the corresponding Section
   const fetchSpecies = async () => {
-    for (let i = 1; i < 5; i++) {
+    const totalPages = 5;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/species/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -168,7 +190,8 @@ function App() {
 
   //Planets fetching for the corresponding Section
   const fetchPlanets = async () => {
-    for (let i = 1; i < 7; i++) {
+    const totalPages = 7;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/planets/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -192,7 +215,8 @@ function App() {
 
   //Starships fetching for the corresponding Section
   const fetchStarships = async () => {
-    for (let i = 1; i < 5; i++) {
+    const totalPages = 5;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/starships/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -292,7 +316,7 @@ function App() {
         <div>
           <NavBar favourites={favourites} />
           <Switch>
-            <Route path="/" exact component={Homepage} />
+            <Route path="/Nemuru" exact component={Homepage} />
             <Route path="/planets" exact component={Planets} />
             <Route path="/species" exact component={Species} />
             <Route
@@ -313,7 +337,6 @@ function App() {
                   show={show}
                   handleClose={handleClose}
                   planetFlag={planetFlag}
-                  buttonFlag={buttonFlag}
                   speciesFlag={speciesFlag}
                   setStarshipsFlag={setStarshipsFlag}
                   starshipsFlag={starshipsFlag}

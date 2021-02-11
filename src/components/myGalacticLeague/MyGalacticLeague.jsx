@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 //STYLING
 import { Card, Button } from "react-bootstrap";
 
-const MyGalacticLeague = ({
-  characters,
-  favourites,
-  setFavourites,
-  handleRemove,
-}) => {
+const MyGalacticLeague = ({ favourites, handleRemove }) => {
   const renderFavlist = () => {
     switch (true) {
       case !favourites.length:
