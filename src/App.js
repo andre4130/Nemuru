@@ -72,7 +72,14 @@ function App() {
   const addPlanets = async () => {
     for (let i = 0; i < characters.length; i++) {
       const planetData = characters[i].homeworld;
-      await fetch(planetData)
+      var s = "s";
+      var position = 4;
+      var planetDataSecure = [
+        planetData.slice(0, position),
+        s,
+        planetData.slice(position),
+      ].join("");
+      await fetch(planetDataSecure)
         .then((res) => res.json())
         .then(
           (data) => {
@@ -97,7 +104,14 @@ function App() {
         var obj = { ...characters[i], species: temp };
         arrayAddSpecies.push(obj);
       } else {
-        await fetch(speciesData)
+        var s = "s";
+        var position = 4;
+        var speciesDataSecure = [
+          speciesData.slice(0, position),
+          s,
+          speciesData.slice(position),
+        ].join("");
+        await fetch(speciesDataSecure)
           .then((res) => res.json())
           .then(
             (data) => {
@@ -124,7 +138,14 @@ function App() {
         var obj = { ...characters[i], starships: temp };
         arrayAddStarships.push(obj);
       } else {
-        await fetch(starshipsData)
+        var s = "s";
+        var position = 4;
+        var speciesDataSecure = [
+          starshipsData.slice(0, position),
+          s,
+          starshipsData.slice(position),
+        ].join("");
+        await fetch(speciesDataSecure)
           .then((res) => res.json())
           .then(
             (data) => {
@@ -292,7 +313,7 @@ function App() {
         <div>
           <NavBar favourites={favourites} />
           <Switch>
-            <Route path="/" exact component={Homepage} />
+            <Route path="/Nemuru" exact component={Homepage} />
             <Route path="/planets" exact component={Planets} />
             <Route path="/species" exact component={Species} />
             <Route
