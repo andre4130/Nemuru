@@ -10,8 +10,6 @@ import Starships from "./components/starships/Starships";
 import Characters from "./components/characters/Characters";
 import MyGalacticLeague from "./components/myGalacticLeague/MyGalacticLeague";
 
-import Testing from "./components/testing/Testing";
-
 function App() {
   //Fetching of the API information
   const [error, setError] = useState(null);
@@ -26,16 +24,20 @@ function App() {
   const [isFiltered, setIsFiltered] = useState(false);
   const [charactersFiltered, setFiltered] = useState([]);
 
-  //planetArray is set to true to trigger the function that fills the array with the name of the planet
-  const [planetArray, setPlanetArray] = useState(false);
+  //planetFlag is set to true to trigger the function that fills the array with the name of the planet
+  const [planetFlag, setPlanetFlag] = useState(false);
+  const [show, setShow] = useState({
+    bool: false,
+    character: "",
+  });
 
   var arraySpecies = [];
   var arrayPlanets = [];
   var arrayStarships = [];
   var arrayCharacters = [];
-  var arrayCharactersFav = [];
   var array = [];
 
+  //First function that fetches the list of the characters and adds to a State
   const fetchCharacters = async () => {
     for (let i = 1; i < 10; i++) {
       await fetch(`https://swapi.dev/api/people/?page=${i}`)
@@ -57,9 +59,11 @@ function App() {
         );
     }
     setCharacters(arrayCharacters);
-    setPlanetArray(true);
+    setPlanetFlag(true);
   };
 
+  //This function fetches the planet name where the character belongs
+  //and adds it to the state
   const addPlanets = async () => {
     for (let i = 0; i < characters.length; i++) {
       const planetData = characters[i].homeworld;
@@ -79,8 +83,7 @@ function App() {
     setCharacters(array);
   };
 
-  // console.log("after fetching planets", characters);
-
+  //Species fetching for the corresponding Section
   const fetchSpecies = async () => {
     for (let i = 1; i < 5; i++) {
       await fetch(`https://swapi.dev/api/species/?page=${i}`)
@@ -104,6 +107,7 @@ function App() {
     setSpecies(arraySpecies);
   };
 
+  //Planets fetching for the corresponding Section
   const fetchPlanets = async () => {
     for (let i = 1; i < 7; i++) {
       await fetch(`https://swapi.dev/api/planets/?page=${i}`)
@@ -127,6 +131,7 @@ function App() {
     setPlanets(arrayPlanets);
   };
 
+  //Starships fetching for the corresponding Section
   const fetchStarships = async () => {
     for (let i = 1; i < 5; i++) {
       await fetch(`https://swapi.dev/api/starships/?page=${i}`)
@@ -151,11 +156,11 @@ function App() {
   };
 
   //Function to filter the favourites
-
   const handleFavourites = (i) => {
     if (!isFiltered) {
       if (!favourites.length) {
         setFavourites([characters[i]]);
+        setShow({ bool: true, character: characters[i].name });
       }
       if (favourites.length > 9) {
         alert("Your List of Favourites has reached the limit of 10 characters");
@@ -163,6 +168,7 @@ function App() {
       }
       if (characters[i] && !favourites.includes(characters[i])) {
         setFavourites([...favourites, characters[i]]);
+        setShow({ bool: true, character: characters[i].name });
       } else if (favourites.includes(characters[i])) {
         alert(`${characters[i].name} is already included in your Favourites`);
       }
@@ -170,6 +176,7 @@ function App() {
     if (isFiltered) {
       if (!favourites.length) {
         setFavourites([charactersFiltered[i]]);
+        setShow({ bool: true, character: charactersFiltered[i].name });
       }
       if (favourites.length > 9) {
         alert("Your List of Favourites has reached the limit of 10 characters");
@@ -177,6 +184,7 @@ function App() {
       }
       if (characters[i] && !favourites.includes(charactersFiltered[i])) {
         setFavourites([...favourites, charactersFiltered[i]]);
+        setShow({ bool: true, character: charactersFiltered[i].name });
       } else if (favourites.includes(charactersFiltered[i])) {
         alert(
           `${charactersFiltered[i].name} is already included in your Favourites`
@@ -185,6 +193,7 @@ function App() {
     }
   };
 
+  //Function to remove characters from the Galactic League
   const handleRemove = (e) => {
     var arr = [...favourites];
     for (var i = 0; i < arr.length; i++) {
@@ -196,6 +205,12 @@ function App() {
     }
   };
 
+  //Function to close the Modal on the Characters list
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  //Storaging the List of Favourites on the Local Storage
   useEffect(() => {
     window.localStorage.setItem("favList", JSON.stringify(favourites));
   }, [favourites]);
@@ -209,7 +224,7 @@ function App() {
 
   useEffect(() => {
     addPlanets();
-  }, [planetArray]);
+  }, [planetFlag]);
 
   return (
     <div className="App">
@@ -235,6 +250,8 @@ function App() {
                   setFavourites={setFavourites}
                   handleFavourites={handleFavourites}
                   setFiltered={setFiltered}
+                  show={show}
+                  handleClose={handleClose}
                 />
               )}
             />
@@ -253,18 +270,9 @@ function App() {
             />
           </Switch>
         </div>
-        {/* <Testing characters={characters} /> */}
       </Router>
     </div>
   );
 }
 
 export default App;
-
-// const favTag = () => {
-//   characters.map((character) => {
-//     character = { ...character, isFav: false };
-//     arrayCharactersFav.push(character);
-//   });
-//   setCharacters(arrayCharactersFav);
-// };

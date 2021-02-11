@@ -46,7 +46,7 @@ const NavBar = ({ favourites }) => {
               color: "#FEFFFC",
               fontSize: "1rem",
               positionTop: "2px",
-              textShadow: "black 1px 1px",
+              textShadow: "0 0 10px #fff",
             }}
           >
             {number}

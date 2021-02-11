@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Star Wars API app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application was created with ReactJS and Styled with Bootstrap. It fetches the information from the Star Wars API https://swapi.dev
 
-## Available Scripts
+## Instructions for Installing the Application
 
-In the project directory, you can run:
+1. Clone this repository (in the master branch)
+2. Install npm and node (if not yet installed)
+3. Open a Terminal in the project root and execute `npm install`
+4. Execute `npm start` to start the application
 
-### `npm start`
+## Notes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. The information is stored in the Local Storage. Even if the user refreshes the page, his Galactic League will remain the same and won't change unless the user adds or removes characters.
+2.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Homepage
 
-### `npm test`
+![Homepage](/src/assets/images/readme/homepage.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Application starts at the homepage (accessible by clicking the rebel logo on the navbar).
+By clicking one of the pictures you will be redirected to the corresponding section of the App.
 
-### `npm run build`
+## Characters
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Characters](/src/assets/images/readme/characters.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The characters section will load the 83 characters documented on the API. Each character will have a single card where the user can see the corresponding information of the character, such as name, height, specie, and the planet where the character lives.
+The user can filter by the name of the character and the planet where the character lives.
+The user can also add up to 10 characters to My Galactic League by clicking on the Millenium Falcon on the bottom right of the card.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Species
 
-### `npm run eject`
+![Species](/src/assets/images/readme/species.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The user can browse through the different species existing in Star Wars.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Planets
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Planets](/src/assets/images/readme/planets.jpg)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In this section the User can check all the Planets that appear on the different movies.
 
-## Learn More
+## Starships
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Starships](/src/assets/images/readme/starships.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+And here you can browse through all the Starships on the different movies.
 
-### Code Splitting
+## My Galactic League
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![MyGalacticLeague](/src/assets/images/readme/mygalacticleague.jpg)
 
-### Analyzing the Bundle Size
+Build up your league! You can add and remove characters to your Galactic League.
+Remember that you cannot repeat characters and you can add up to 10.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Webpage Deployment
 
-### Making a Progressive Web App
+You can check a demo of this application on the following link
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+https://andre4130.github.io/star-wars-nemuru/
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### May the API be with you
