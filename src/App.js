@@ -28,7 +28,6 @@ function App() {
   const [planetFlag, setPlanetFlag] = useState(false);
   const [speciesFlag, setSpeciesFlag] = useState(false);
   const [starshipsFlag, setStarshipsFlag] = useState(false);
-  const [buttonFlag, setButtonFlag] = useState(false);
   const [show, setShow] = useState({
     bool: false,
     character: "",
@@ -44,7 +43,8 @@ function App() {
 
   //First function that fetches the list of the characters and adds to a State
   const fetchCharacters = async () => {
-    for (let i = 1; i < 10; i++) {
+    const totalPages = 10;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/people/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -165,7 +165,8 @@ function App() {
 
   //Species fetching for the corresponding Section
   const fetchSpecies = async () => {
-    for (let i = 1; i < 5; i++) {
+    const totalPages = 5;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/species/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -189,7 +190,8 @@ function App() {
 
   //Planets fetching for the corresponding Section
   const fetchPlanets = async () => {
-    for (let i = 1; i < 7; i++) {
+    const totalPages = 7;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/planets/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -213,7 +215,8 @@ function App() {
 
   //Starships fetching for the corresponding Section
   const fetchStarships = async () => {
-    for (let i = 1; i < 5; i++) {
+    const totalPages = 5;
+    for (let i = 1; i < totalPages; i++) {
       await fetch(`https://swapi.dev/api/starships/?page=${i}`)
         .then((res) => res.json())
         .then(
@@ -334,7 +337,6 @@ function App() {
                   show={show}
                   handleClose={handleClose}
                   planetFlag={planetFlag}
-                  buttonFlag={buttonFlag}
                   speciesFlag={speciesFlag}
                   setStarshipsFlag={setStarshipsFlag}
                   starshipsFlag={starshipsFlag}
