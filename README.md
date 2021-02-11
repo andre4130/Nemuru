@@ -60,6 +60,6 @@ Remember that you cannot repeat characters and you can add up to 10.
 
 You can check a demo of this application on the following link
 
-https://andre4130.github.io/star-wars-nemuru/
+https://andre4130.github.io/Nemuru/
 
 ### May the API be with you
