@@ -26,6 +26,8 @@ By clicking one of the pictures you will be redirected to the corresponding sect
 ![Characters](/src/assets/img/readme/characters.jpg)
 
 The characters section will load the 83 characters documented on the API. Each character will have a single card where the user can see the corresponding information of the character, such as name, height, specie, and the planet where the character lives.
+There are two buttons, in order to load the Characters information concerning the specie and the starship the characters pilots.
+_Important Notice_: it is important that these two buttons are pressed only when "Planet" information finishes Loading. The information will be loaded after clicking the fetching.
 The user can filter by the name of the character and the planet where the character lives.
 The user can also add up to 10 characters to My Galactic League by clicking on the Millenium Falcon on the bottom right of the card.
 

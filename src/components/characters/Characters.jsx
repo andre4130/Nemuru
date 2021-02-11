@@ -20,6 +20,11 @@ const Characters = ({
   setFiltered,
   show,
   handleClose,
+  buttonFlag,
+  addSpecies,
+  addStarships,
+  speciesFlag,
+  starshipsFlag,
 }) => {
   const [filter, setFilter] = useState("");
   const [select, setSelect] = useState("");
@@ -27,24 +32,6 @@ const Characters = ({
   useEffect(() => {
     setFiltered(characters);
   }, []);
-
-  //This function writes down on each card which specie the character belongs to
-  const getSpecie = (character) => {
-    const specieData = character.species;
-    if (specieData.length > 0) {
-      var res = specieData[0].split("/");
-      var specieID = res[5];
-    }
-    return (
-      <>
-        {species[specieID] === undefined ? (
-          <p>&nbsp;No information</p>
-        ) : (
-          <p>&nbsp;{species[specieID - 1]}</p>
-        )}
-      </>
-    );
-  };
 
   const getStarship = (character) => {
     const starshipData = character.starships;
@@ -101,6 +88,20 @@ const Characters = ({
           setSelect={setSelect}
           setIsFiltered={setIsFiltered}
         />
+        <div className="d-inline-flex mb-3">
+          {!speciesFlag ? (
+            <Button className="mr-4" onClick={() => addSpecies()}>
+              Load Species
+            </Button>
+          ) : null}
+
+          {!starshipsFlag ? (
+            <Button className="mr-4" onClick={() => addStarships()}>
+              Load Starships
+            </Button>
+          ) : null}
+        </div>
+
         {!characters.length ? (
           <div className="d-inline-flex w-100 justify-content-center">
             <Loading />
@@ -114,7 +115,6 @@ const Characters = ({
                     character={character}
                     index={index}
                     id={character.name}
-                    getSpecie={getSpecie}
                     getStarship={getStarship}
                     handleFavourites={handleFavourites}
                   />
@@ -125,7 +125,6 @@ const Characters = ({
                     character={character}
                     index={index}
                     id={character.name}
-                    getSpecie={getSpecie}
                     getStarship={getStarship}
                     handleFavourites={handleFavourites}
                   />

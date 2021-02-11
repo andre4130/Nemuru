@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 import falcon from "../../assets/svg/falcon_yellow_nofav.svg";
 import LoadingPlanet from "../loading/LoadingPlanet";
 
-const SingleCharacter = ({ character, index, getSpecie, handleFavourites }) => {
+const SingleCharacter = ({ character, index, handleFavourites }) => {
   return (
     <div>
       <Card key={index} bg="dark" text="white">
@@ -23,12 +23,7 @@ const SingleCharacter = ({ character, index, getSpecie, handleFavourites }) => {
           </Card.Text>
           <Card.Text>
             <div className="d-inline-flex">
-              <b>Specie: </b> {getSpecie(character)}
-            </div>
-          </Card.Text>
-          <Card.Text>
-            <div className="d-inline-flex">
-              <b>Planet: &nbsp;</b>{" "}
+              <b>Planet: &nbsp;</b>
               {character.homeworld.startsWith("http") ? (
                 <LoadingPlanet />
               ) : (
@@ -36,6 +31,24 @@ const SingleCharacter = ({ character, index, getSpecie, handleFavourites }) => {
               )}
             </div>
           </Card.Text>
+          {character.species[0] === undefined ||
+          character.species[0].startsWith("http") ? null : (
+            <Card.Text>
+              <div className="d-inline-flex">
+                <b>Specie:&nbsp;</b>
+                {` ${character.species}`}
+              </div>
+            </Card.Text>
+          )}
+          {character.starships[0] === undefined ||
+          character.starships[0].startsWith("http") ? null : (
+            <Card.Text>
+              <div className="d-inline-flex">
+                <b>Starship:&nbsp;</b>
+                {` ${character.starships}`}
+              </div>
+            </Card.Text>
+          )}
         </Card.Body>
         <div className="d-flex justify-content-end m-3">
           <div
