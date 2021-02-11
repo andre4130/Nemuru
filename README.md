@@ -16,14 +16,14 @@ This application was created with ReactJS and Styled with Bootstrap. It fetches 
 
 ## Homepage
 
-![Homepage](/src/assets/images/readme/homepage.jpg)
+![Homepage](/src/assets/img/readme/homepage.jpg)
 
 The Application starts at the homepage (accessible by clicking the rebel logo on the navbar).
 By clicking one of the pictures you will be redirected to the corresponding section of the App.
 
 ## Characters
 
-![Characters](/src/assets/images/readme/characters.jpg)
+![Characters](/src/assets/img/readme/characters.jpg)
 
 The characters section will load the 83 characters documented on the API. Each character will have a single card where the user can see the corresponding information of the character, such as name, height, specie, and the planet where the character lives.
 The user can filter by the name of the character and the planet where the character lives.
@@ -31,25 +31,25 @@ The user can also add up to 10 characters to My Galactic League by clicking on t
 
 ## Species
 
-![Species](/src/assets/images/readme/species.jpg)
+![Species](/src/assets/img/readme/species.jpg)
 
 The user can browse through the different species existing in Star Wars.
 
 ## Planets
 
-![Planets](/src/assets/images/readme/planets.jpg)
+![Planets](/src/assets/img/readme/planets.jpg)
 
 In this section the User can check all the Planets that appear on the different movies.
 
 ## Starships
 
-![Starships](/src/assets/images/readme/starships.jpg)
+![Starships](/src/assets/img/readme/starships.jpg)
 
 And here you can browse through all the Starships on the different movies.
 
 ## My Galactic League
 
-![MyGalacticLeague](/src/assets/images/readme/mygalacticleague.jpg)
+![MyGalacticLeague](/src/assets/img/readme/mygalacticleague.jpg)
 
 Build up your league! You can add and remove characters to your Galactic League.
 Remember that you cannot repeat characters and you can add up to 10.
