@@ -6,9 +6,7 @@ import Filter from "../filter/Filter";
 import SingleCharacter from "./SingleCharacter";
 
 //STYLING
-import { Container, CardColumns } from "react-bootstrap";
-import fav from "../../assets/svg/falcon_yellow.svg";
-import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
+import { Container, CardColumns, Modal, Button } from "react-bootstrap";
 
 const Characters = ({
   characters,
@@ -16,13 +14,12 @@ const Characters = ({
   planets,
   starships,
   setCharacters,
-  favourites,
-  setFavourites,
   handleFavourites,
-  isFiltered,
   setIsFiltered,
   charactersFiltered,
   setFiltered,
+  show,
+  handleClose,
 }) => {
   const [filter, setFilter] = useState("");
   const [select, setSelect] = useState("");
@@ -31,13 +28,13 @@ const Characters = ({
     setFiltered(characters);
   }, []);
 
+  //This function writes down on each card which specie the character belongs to
   const getSpecie = (character) => {
     const specieData = character.species;
     if (specieData.length > 0) {
       var res = specieData[0].split("/");
       var specieID = res[5];
     }
-
     return (
       <>
         {species[specieID] === undefined ? (
@@ -48,24 +45,6 @@ const Characters = ({
       </>
     );
   };
-
-  // const getPlanet = (character) => {
-  //   const planetData = character.homeworld;
-  //   if (planetData.length > 0) {
-  //     var res = planetData.split("/");
-  //     var planetID = res[5];
-  //   }
-
-  //   return (
-  //     <>
-  //       {planets[planetID] === undefined ? (
-  //         <p>&nbsp;No information</p>
-  //       ) : (
-  //         <p>&nbsp;{planets[planetID - 1]}</p>
-  //       )}
-  //     </>
-  //   );
-  // };
 
   const getStarship = (character) => {
     const starshipData = character.starships;
@@ -86,7 +65,6 @@ const Characters = ({
           );
       }
     }
-
     return (
       <>
         {starshipArray[0] === undefined ? (
@@ -138,7 +116,6 @@ const Characters = ({
                     id={character.name}
                     getSpecie={getSpecie}
                     getStarship={getStarship}
-                    // getPlanet={getPlanet}
                     handleFavourites={handleFavourites}
                   />
                 ))
@@ -150,13 +127,25 @@ const Characters = ({
                     id={character.name}
                     getSpecie={getSpecie}
                     getStarship={getStarship}
-                    // getPlanet={getPlanet}
                     handleFavourites={handleFavourites}
                   />
                 ))}
           </CardColumns>
         )}
       </Container>
+      <Modal show={show.bool} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>My Galactic League</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {show.character} has been added to My Galactic League
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

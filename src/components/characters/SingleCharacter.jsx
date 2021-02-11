@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 //STYLING
-import { Card, Button } from "react-bootstrap";
-import fav from "../../assets/svg/falcon_yellow.svg";
-import noFav from "../../assets/svg/falcon_yellow_nofav.svg";
+import { Card } from "react-bootstrap";
+import falcon from "../../assets/svg/falcon_yellow_nofav.svg";
+import LoadingPlanet from "../loading/LoadingPlanet";
 
-const SingleCharacter = ({
-  character,
-  index,
-  getSpecie,
-  getStarship,
-  handleFavourites,
-}) => {
+const SingleCharacter = ({ character, index, getSpecie, handleFavourites }) => {
   return (
     <div>
       <Card key={index} bg="dark" text="white">
         <Card.Body>
           <Card.Title>
-            <h3>
+            <h3 style={{ color: "#ffe81f" }}>
               <b>{character.name}</b>
             </h3>
           </Card.Title>
@@ -34,15 +28,12 @@ const SingleCharacter = ({
           </Card.Text>
           <Card.Text>
             <div className="d-inline-flex">
-              <b>Starship(s): </b> {getStarship(character)}
-            </div>
-          </Card.Text>
-          <Card.Text>
-            <div className="d-inline-flex">
               <b>Planet: &nbsp;</b>{" "}
-              {character.homeworld.startsWith("http")
-                ? " Planets are loading..."
-                : ` ${character.homeworld}`}
+              {character.homeworld.startsWith("http") ? (
+                <LoadingPlanet />
+              ) : (
+                ` ${character.homeworld}`
+              )}
             </div>
           </Card.Text>
         </Card.Body>
@@ -51,15 +42,13 @@ const SingleCharacter = ({
             className="d-column-flex justify-content-end"
             onClick={() => handleFavourites(index)}
           >
-            {character.isFav ? (
-              <img src={fav} alt="falcon" className="fav-icon" />
-            ) : (
-              <img src={noFav} alt="falcon" className="fav-icon" />
-            )}
+            <p style={{ fontSize: "0.7rem", marginBottom: "0" }}>
+              Add to League
+            </p>
+            <div className="d-flex justify-content-center">
+              <img src={falcon} alt="falcon" className="fav-icon" />
+            </div>
           </div>
-          {/* <Button onClick={() => handleFavourites(index)}>
-          Add to favourites
-        </Button> */}
         </div>
       </Card>
     </div>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 //STYLING
 import { Card, Button } from "react-bootstrap";
@@ -12,7 +13,17 @@ const MyGalacticLeague = ({
   const renderFavlist = () => {
     switch (true) {
       case !favourites.length:
-        return <p>Empty List</p>;
+        return (
+          <div className="container empty-list">
+            <h3>Your Galactic League is currently empty</h3>
+            <div>
+              <p>
+                Go to <Link to="/characters">&nbsp;Characters&nbsp;</Link> page
+                and add characters to your Team
+              </p>
+            </div>
+          </div>
+        );
       default:
         return (
           <div className="container d-flex-column w-75">
@@ -20,14 +31,24 @@ const MyGalacticLeague = ({
               return (
                 <div className="container py-2" key={index}>
                   <Card index={fav.name} bg="dark">
-                    <Card.Header as="h5">
-                      <b>{fav.name}</b>
+                    <Card.Header as="h5" style={{ color: "whitesmoke" }}>
+                      Number {index + 1} of your Galactic League
                     </Card.Header>
                     <Card.Body>
-                      <Card.Title>Special title treatment</Card.Title>
+                      <Card.Title>
+                        <b>{fav.name}</b>
+                      </Card.Title>
                       <Card.Text>
-                        With supporting text below as a natural lead-in to
-                        additional content.
+                        <p>Height: {fav.height}</p>
+                      </Card.Text>
+                      <Card.Text>
+                        <p>Mass: {fav.mass}</p>
+                      </Card.Text>
+                      <Card.Text>
+                        <p>Birth: {fav.birth_year}</p>
+                      </Card.Text>
+                      <Card.Text>
+                        <p>Planet: {fav.homeworld}</p>
                       </Card.Text>
                       <div className="d-flex justify-content-end">
                         <Button
