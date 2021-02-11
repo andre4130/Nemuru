@@ -20,7 +20,7 @@ const NavBar = ({ favourites }) => {
       variant="dark"
       className="navbar"
     >
-      <Link to="/">
+      <Link to="/Nemuru">
         <img src={rebel} alt="rebel" style={{ height: "50px" }} />
       </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
