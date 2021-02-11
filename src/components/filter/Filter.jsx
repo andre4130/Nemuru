@@ -45,6 +45,22 @@ const Filter = ({
         });
         setFiltered(homeworld);
         break;
+      case filter === "species":
+        let species = characters.filter((item) => {
+          if (item !== undefined && item.species === select) {
+            return true;
+          }
+        });
+        setFiltered(species);
+        break;
+      case filter === "starships":
+        let starships = characters.filter((item) => {
+          if (item !== undefined && item.starships === select) {
+            return true;
+          }
+        });
+        setFiltered(starships);
+        break;
       default:
         break;
     }

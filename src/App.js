@@ -26,6 +26,9 @@ function App() {
 
   //planetFlag is set to true to trigger the function that fills the array with the name of the planet
   const [planetFlag, setPlanetFlag] = useState(false);
+  const [speciesFlag, setSpeciesFlag] = useState(false);
+  const [starshipsFlag, setStarshipsFlag] = useState(false);
+  const [buttonFlag, setButtonFlag] = useState(false);
   const [show, setShow] = useState({
     bool: false,
     character: "",
@@ -35,7 +38,9 @@ function App() {
   var arrayPlanets = [];
   var arrayStarships = [];
   var arrayCharacters = [];
-  var array = [];
+  var arrayAddPlanets = [];
+  var arrayAddSpecies = [];
+  var arrayAddStarships = [];
 
   //First function that fetches the list of the characters and adds to a State
   const fetchCharacters = async () => {
@@ -73,14 +78,68 @@ function App() {
           (data) => {
             var temp = data.name;
             var obj = { ...characters[i], homeworld: temp };
-            array.push(obj);
+            arrayAddPlanets.push(obj);
           },
           (error) => {
             console.log("error!", error);
           }
         );
     }
-    setCharacters(array);
+    setCharacters(arrayAddPlanets);
+  };
+
+  const addSpecies = async () => {
+    alert("Characters' species will now be loaded, please wait...");
+    for (let i = 0; i < characters.length; i++) {
+      const speciesData = characters[i].species[0];
+      if (speciesData === undefined) {
+        var temp = "No Information";
+        var obj = { ...characters[i], species: temp };
+        arrayAddSpecies.push(obj);
+      } else {
+        await fetch(speciesData)
+          .then((res) => res.json())
+          .then(
+            (data) => {
+              var temp = data.name;
+              var obj = { ...characters[i], species: temp };
+              arrayAddSpecies.push(obj);
+            },
+            (error) => {
+              console.log("error!", error);
+            }
+          );
+      }
+    }
+    setSpeciesFlag(true);
+    setCharacters(arrayAddSpecies);
+  };
+
+  const addStarships = async () => {
+    alert("Characters' starships will now be loaded,, please wait...");
+    for (let i = 0; i < characters.length; i++) {
+      const starshipsData = characters[i].starships[0];
+      if (starshipsData === undefined) {
+        var temp = "No Information";
+        var obj = { ...characters[i], starships: temp };
+        arrayAddStarships.push(obj);
+      } else {
+        await fetch(starshipsData)
+          .then((res) => res.json())
+          .then(
+            (data) => {
+              var temp = data.name;
+              var obj = { ...characters[i], starships: temp };
+              arrayAddStarships.push(obj);
+            },
+            (error) => {
+              console.log("error!", error);
+            }
+          );
+      }
+    }
+    setStarshipsFlag(true);
+    setCharacters(arrayAddStarships);
   };
 
   //Species fetching for the corresponding Section
@@ -220,6 +279,7 @@ function App() {
     fetchPlanets();
     fetchStarships();
     fetchCharacters();
+    // addSpecies();
   }, []);
 
   useEffect(() => {
@@ -252,6 +312,13 @@ function App() {
                   setFiltered={setFiltered}
                   show={show}
                   handleClose={handleClose}
+                  planetFlag={planetFlag}
+                  buttonFlag={buttonFlag}
+                  speciesFlag={speciesFlag}
+                  setStarshipsFlag={setStarshipsFlag}
+                  starshipsFlag={starshipsFlag}
+                  addStarships={addStarships}
+                  addSpecies={addSpecies}
                 />
               )}
             />
