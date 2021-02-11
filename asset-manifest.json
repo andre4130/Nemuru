@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/Nemuru/static/css/main.2c05078c.chunk.css",
+    "main.js": "/Nemuru/static/js/main.490bfd47.chunk.js",
+    "main.js.map": "/Nemuru/static/js/main.490bfd47.chunk.js.map",
+    "runtime-main.js": "/Nemuru/static/js/runtime-main.d4808b46.js",
+    "runtime-main.js.map": "/Nemuru/static/js/runtime-main.d4808b46.js.map",
+    "static/js/2.87b9dffa.chunk.js": "/Nemuru/static/js/2.87b9dffa.chunk.js",
+    "static/js/2.87b9dffa.chunk.js.map": "/Nemuru/static/js/2.87b9dffa.chunk.js.map",
+    "static/js/3.df3b33e2.chunk.js": "/Nemuru/static/js/3.df3b33e2.chunk.js",
+    "static/js/3.df3b33e2.chunk.js.map": "/Nemuru/static/js/3.df3b33e2.chunk.js.map",
+    "index.html": "/Nemuru/index.html",
+    "static/css/main.2c05078c.chunk.css.map": "/Nemuru/static/css/main.2c05078c.chunk.css.map",
+    "static/js/2.87b9dffa.chunk.js.LICENSE.txt": "/Nemuru/static/js/2.87b9dffa.chunk.js.LICENSE.txt",
+    "static/media/characters.b488b1c3.png": "/Nemuru/static/media/characters.b488b1c3.png",
+    "static/media/falcon.2248d8eb.svg": "/Nemuru/static/media/falcon.2248d8eb.svg",
+    "static/media/falcon_yellow_nofav.d58e0732.svg": "/Nemuru/static/media/falcon_yellow_nofav.d58e0732.svg",
+    "static/media/league.28191ab0.png": "/Nemuru/static/media/league.28191ab0.png",
+    "static/media/planets.9d5c4324.png": "/Nemuru/static/media/planets.9d5c4324.png",
+    "static/media/rebel.1da68372.svg": "/Nemuru/static/media/rebel.1da68372.svg",
+    "static/media/species.b0507b30.png": "/Nemuru/static/media/species.b0507b30.png",
+    "static/media/star-wars.42a756c7.svg": "/Nemuru/static/media/star-wars.42a756c7.svg",
+    "static/media/index.css": "/Nemuru/static/media/stars.7768fd9d.jpg",
+    "static/media/starships.d2ab78d1.png": "/Nemuru/static/media/starships.d2ab78d1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4808b46.js",
+    "static/js/2.87b9dffa.chunk.js",
+    "static/css/main.2c05078c.chunk.css",
+    "static/js/main.490bfd47.chunk.js"
+  ]
+}
