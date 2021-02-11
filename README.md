@@ -12,7 +12,7 @@ This application was created with ReactJS and Styled with Bootstrap. It fetches 
 ## Notes
 
 1. The information is stored in the Local Storage. Even if the user refreshes the page, his Galactic League will remain the same and won't change unless the user adds or removes characters.
-2.
+2. No testing were added to this App due to the lack of experience with Testing and lack of time. However, the functionality of the App and a correct styling of the app has been priorized.
 
 ## Homepage
 
