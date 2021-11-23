@@ -72,14 +72,7 @@ function App() {
   const addPlanets = async () => {
     for (let i = 0; i < characters.length; i++) {
       const planetData = characters[i].homeworld;
-      var s = "s";
-      var position = 4;
-      var planetDataSecure = [
-        planetData.slice(0, position),
-        s,
-        planetData.slice(position),
-      ].join("");
-      await fetch(planetDataSecure)
+      await fetch(planetData)
         .then((res) => res.json())
         .then(
           (data) => {
@@ -104,14 +97,7 @@ function App() {
         var obj = { ...characters[i], species: temp };
         arrayAddSpecies.push(obj);
       } else {
-        var s = "s";
-        var position = 4;
-        var speciesDataSecure = [
-          speciesData.slice(0, position),
-          s,
-          speciesData.slice(position),
-        ].join("");
-        await fetch(speciesDataSecure)
+        await fetch(speciesData)
           .then((res) => res.json())
           .then(
             (data) => {
@@ -138,14 +124,7 @@ function App() {
         var obj = { ...characters[i], starships: temp };
         arrayAddStarships.push(obj);
       } else {
-        var s = "s";
-        var position = 4;
-        var speciesDataSecure = [
-          starshipsData.slice(0, position),
-          s,
-          starshipsData.slice(position),
-        ].join("");
-        await fetch(speciesDataSecure)
+        await fetch(starshipsData)
           .then((res) => res.json())
           .then(
             (data) => {
